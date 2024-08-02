@@ -1,8 +1,11 @@
 const Course = require("../models/Course");
 
+// Controller function to add a new course
 exports.addCourse = async (req, res) => {
   try {
+    // Create a new Course instance with the data from the request body
     const course = new Course(req.body);
+    // Save the course to the database
     await course.save();
     res.status(201).json(course);
   } catch (error) {
@@ -10,8 +13,10 @@ exports.addCourse = async (req, res) => {
   }
 };
 
+// Controller function to get all courses
 exports.getAllCourses = async (req, res) => {
   try {
+    // Retrieve all courses from the database
     const courses = await Course.find();
     res.json(courses);
   } catch (error) {
